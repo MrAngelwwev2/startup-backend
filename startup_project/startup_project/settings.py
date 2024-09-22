@@ -73,13 +73,23 @@ WSGI_APPLICATION = 'startup_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+#DATABASES = {
+#    "default": {
+#        "ENGINE": "django.db.backends.sqlite3",
+#        "NAME": "mydatabase",
+#    }
+#}
+
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": "mydatabase",
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'startup',
+        'USER': 'angel',
+        'PASSWORD': '1234',
+        'HOST': 'localhost',  # Set to your MySQL server host
+        'PORT': '3306',       # Set to your MySQL server port
     }
 }
-
 
 
 # Password validation
