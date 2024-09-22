@@ -99,13 +99,13 @@ class Users(models.Model):
     id_cities = models.ForeignKey(Cities, models.DO_NOTHING, db_column='id_cities')
     password = models.CharField(max_length=256)
     url_linkedin = models.CharField(max_length=180)
-    id_carreers = models.ForeignKey(Carreers, models.DO_NOTHING, db_column='id_carreers')
-    id_skills = models.ForeignKey(Skills, models.DO_NOTHING, db_column='id_skills')
-    id_certification = models.ForeignKey(Certification, models.DO_NOTHING, db_column='id_certification')
-    id_softwares = models.ForeignKey(Softwares, models.DO_NOTHING, db_column='id_softwares')
-    id_metodology = models.ForeignKey(Metodology, models.DO_NOTHING, db_column='id_metodology')
-    id_charges = models.ForeignKey(Charges, models.DO_NOTHING, db_column='id_charges')
-    id_categories = models.ForeignKey(Categories, models.DO_NOTHING, db_column='id_categories')
+    id_carreers = models.ForeignKey(Carreers, models.DO_NOTHING, db_column='id_carreers', blank=True, null=True)
+    id_skills = models.ForeignKey(Skills, models.DO_NOTHING, db_column='id_skills', blank=True, null=True)
+    id_certification = models.ForeignKey(Certification, models.DO_NOTHING, db_column='id_certification', blank=True, null=True)
+    id_softwares = models.ForeignKey(Softwares, models.DO_NOTHING, db_column='id_softwares', blank=True, null=True)
+    id_metodology = models.ForeignKey(Metodology, models.DO_NOTHING, db_column='id_metodology', blank=True, null=True)
+    id_charges = models.ForeignKey(Charges, models.DO_NOTHING, db_column='id_charges', blank=True, null=True)
+    id_categories = models.ForeignKey(Categories, models.DO_NOTHING, db_column='id_categories', blank=True, null=True)
 
     class Meta:
         managed = False
