@@ -46,3 +46,14 @@ class CertificationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Certification
         fields = ['id_certification', 'certification', 'id_carreers']
+        
+class UsersSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Users
+        fields = [
+            'id_users', 'names', 'last_names', 'email', 'born_date',
+            'personal_identification_number', 'phone_number', 'gender',
+            'id_country', 'id_cities', 'password', 'url_linkedin',
+            'id_carreers', 'id_skills', 'id_certification', 'id_softwares',
+            'id_metodology', 'id_charges', 'id_categories'
+        ]

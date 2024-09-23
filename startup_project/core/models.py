@@ -92,7 +92,7 @@ class Users(models.Model):
     email = models.CharField(max_length=180)
     born_date = models.DateField()
     personal_identification_number = models.IntegerField()
-    phone_number = models.IntegerField()
+    phone_number = models.CharField(max_length=16)
     gender = models.CharField(max_length=50)
     id_country = models.ForeignKey(Country, models.DO_NOTHING, db_column='id_country')
     id_cities = models.ForeignKey(Cities, models.DO_NOTHING, db_column='id_cities')

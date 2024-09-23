@@ -1,9 +1,11 @@
-from django.shortcuts import render
+from django.http import Http404
+from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.hashers import check_password
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from .models import Categories, Carreers, Country, Metodology, Softwares, Charges, Cities, Skills, Users, Certification
-from .serializers import CategoriesSerializer, CarreersSerializer, CountrySerializer, MetodologySerializer, SoftwaresSerializer, ChargesSerializer, CitiesSerializer, SkillsSerializer, CertificationSerializer
+from .serializers import CategoriesSerializer, CarreersSerializer, CountrySerializer, MetodologySerializer, SoftwaresSerializer, ChargesSerializer, CitiesSerializer, SkillsSerializer, CertificationSerializer, UsersSerializer
 
 # Create your views here.
 class CategoriesListView(APIView):
@@ -79,3 +81,31 @@ class SkillsListView(APIView):
         
         serializer = SkillsSerializer(skills, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+    
+# Guardar el nuevo usuario
+class CreateUserView(APIView):
+    def post(self, request):
+        serializer = UsersSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+# Inicio de sesión
+class LoginView(APIView):
+    def post(self, request):
+        email = request.data.get('email')
+        password = request.data.get('password')
+
+        if not email or not password:
+            return Response({"error": "Se requiere email y contraseña."}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            user = Users.objects.get(email=email)
+        except Users.DoesNotExist:
+            return Response({"error": "Usuario no encontrado."}, status=status.HTTP_404_NOT_FOUND)
+
+        if check_password(password, user.password):
+            return Response({"message": "Login exitoso", "user_id": user.id_users}, status=status.HTTP_200_OK)
+        else:
+            return Response({"error": "Correo o contraseña incorrectos"}, status=status.HTTP_400_BAD_REQUEST)
