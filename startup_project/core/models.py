@@ -41,21 +41,20 @@ class Charges(models.Model):
 
 class Cities(models.Model):
     id_cities = models.AutoField(primary_key=True)
-    id_countries = models.ForeignKey('Countries', models.DO_NOTHING, db_column='id_countries')
+    id_country = models.ForeignKey('Country', models.DO_NOTHING, db_column='id_country')
     city = models.CharField(max_length=100)
 
     class Meta:
         managed = False
         db_table = 'cities'
 
-
-class Countries(models.Model):
-    id_countries = models.AutoField(primary_key=True)
+class Country(models.Model):
+    id_country = models.AutoField(primary_key=True)
     country = models.CharField(max_length=100)
 
     class Meta:
         managed = False
-        db_table = 'countries'
+        db_table = 'country'
 
 
 class Metodology(models.Model):
@@ -95,7 +94,7 @@ class Users(models.Model):
     personal_identification_number = models.IntegerField()
     phone_number = models.IntegerField()
     gender = models.CharField(max_length=50)
-    id_countries = models.ForeignKey(Countries, models.DO_NOTHING, db_column='id_countries')
+    id_country = models.ForeignKey(Country, models.DO_NOTHING, db_column='id_country')
     id_cities = models.ForeignKey(Cities, models.DO_NOTHING, db_column='id_cities')
     password = models.CharField(max_length=256)
     url_linkedin = models.CharField(max_length=180)

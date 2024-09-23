@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Categories, Carreers, Countries
+from .models import Categories, Carreers, Country, Metodology, Softwares
 
 class CategoriesSerializer(serializers.ModelSerializer):
     class Meta:
@@ -12,7 +12,17 @@ class CarreersSerializer(serializers.ModelSerializer):
         model = Carreers
         fields = ['id_carreers', 'carreer']
         
-class CountriesSerializer(serializers.ModelSerializer):
+class CountrySerializer(serializers.ModelSerializer):
     class Meta:
-        model = Countries
-        fields = ['id_countries', 'country']
+        model = Country
+        fields = ['id_country', 'country']
+
+class MetodologySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Metodology
+        fields = ['id_metodology', 'metodology']
+        
+class SoftwaresSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Softwares
+        fields = ['id_softwares', 'software']

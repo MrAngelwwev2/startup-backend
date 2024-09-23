@@ -91,14 +91,25 @@ WSGI_APPLICATION = 'startup_project.wsgi.application'
 #    }
 #}
 
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.mysql',
+#        'NAME': 'startup',
+#        'USER': 'angel',
+#       'PASSWORD': '1234',
+#        'HOST': 'localhost',  # Set to your MySQL server host
+#        'PORT': '3306',       # Set to your MySQL server port
+#    }
+#}
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'startup',
-        'USER': 'angel',
-        'PASSWORD': '1234',
-        'HOST': 'localhost',  # Set to your MySQL server host
-        'PORT': '3306',       # Set to your MySQL server port
+        'USER': '403ehc',
+        'PASSWORD': 'xau_v6r0XuIeqI8GiRIqxzUUeDo1Fc3v23Ox4',
+        'HOST': 'us-east-1.sql.xata.sh',  # Set to your MySQL server host 
+        'OPTIONS': {'sslmode': 'require'},     # Set to your MySQL server port
     }
 }
 
